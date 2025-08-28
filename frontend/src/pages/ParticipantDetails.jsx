@@ -10,7 +10,7 @@ const ParticipantDetails = () => {
     const fetchParticipant = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/v1/hackstrom/participants/${id}`
+          `https://datm-hackstrom-1.onrender.com/api/v1/hackstrom/participants/${id}`
         );
         const data = await res.json();
         setParticipant(data);

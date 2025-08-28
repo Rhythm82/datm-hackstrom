@@ -12,7 +12,7 @@ const Admin = () => {
     const fetchParticipants = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/v1/hackstrom/participants/get-participants"
+          "https://datm-hackstrom-1.onrender.com/api/v1/hackstrom/participants/get-participants"
         );
         setParticipants(res.data);
       } catch (err) {
@@ -25,7 +25,7 @@ const Admin = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/v1/hackstrom/auth/logout",
+        "https://datm-hackstrom-1.onrender.com/api/v1/hackstrom/auth/logout",
         {},
         {
           headers: {

@@ -17,7 +17,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/hackstrom/auth/login",
+        "https://datm-hackstrom-1.onrender.com/api/v1/hackstrom/auth/login",
         {
           email,
           password,
