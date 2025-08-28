@@ -64,10 +64,10 @@ const Home = () => {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="relative text-5xl md:text-7xl font-extrabold drop-shadow-[0_0_15px_rgba(100,100,155,0.6)] overflow-hidden"
+            className="relative text-5xl md:text-7xl font-extrabold drop-shadow-[0_0_15px_rgba(70,70,80,0.6)] overflow-hidden"
           >
             <motion.span
-              className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-yellow-200 to-gray-200"
+              className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-green-300 to-gray-200"
               animate={{ backgroundPositionX: ["-200%", "200%"] }}
               transition={{
                 repeat: Infinity,
