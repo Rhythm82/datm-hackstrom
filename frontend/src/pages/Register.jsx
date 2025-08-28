@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { generatePdf } from "../components/generatePDF"
+import { generatepdf } from "../components/generatedPdf.jsx";
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -96,7 +96,7 @@ const Register = () => {
       setMessage("✅ Registration successful!");
       alert("🎉 Your registration is complete!");
 
-        generatePdf({ ...formData, uniqueId: res.data.uniqueId });
+        generatepdf({ ...formData, uniqueId: res.data.uniqueId });
 
     } catch (err) {
       setMessage(" Something went wrong. Try again!");

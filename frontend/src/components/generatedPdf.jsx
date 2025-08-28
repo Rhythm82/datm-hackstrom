@@ -16,7 +16,7 @@ const toBase64 = (url) => {
     );
 };
 
-export const generatePdf = async (data) => {
+export const generatepdf = async (data) => {
   // Convert hero image to Base64
   const bannerImg = await toBase64(heroImage);
 
