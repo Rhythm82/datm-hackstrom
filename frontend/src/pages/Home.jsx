@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import heroImg from "../assets/hero.jpg"; 
 
 const Home = () => {
   const targetDate = new Date("2025-11-10T10:30:00").getTime();
@@ -142,7 +143,7 @@ const Home = () => {
         className="w-full py-20 bg-gray-950 flex justify-center"
       >
         <img
-          src="\src\assets\hero.jpg"
+          src={heroImg}
           alt="Hackathon Showcase"
           className="rounded-2xl shadow-2xl max-w-5xl w-full object-cover"
         />
