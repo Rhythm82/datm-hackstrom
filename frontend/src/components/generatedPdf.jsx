@@ -1,5 +1,4 @@
 import { jsPDF } from "jspdf";
-import heroImage from '../assets/hero.jpg'; // adjust path if needed
 
 // Utility: convert image to Base64
 const toBase64 = (url) => {
@@ -18,7 +17,7 @@ const toBase64 = (url) => {
 
 export const generatepdf = async (data) => {
   // Convert hero image to Base64
-  const bannerImg = await toBase64(heroImage);
+  const bannerImg = await toBase64('/hero.jpg');
 
   const doc = new jsPDF({
     unit: "mm",

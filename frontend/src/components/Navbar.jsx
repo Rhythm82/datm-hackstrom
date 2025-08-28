@@ -28,7 +28,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-bold text-gray-100 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]"
+          className="text-2xl font-bold text-gray-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]"
         >
           Hack<span className="text-emerald-300">Strom</span>
         </Link>
@@ -43,7 +43,7 @@ const Navbar = () => {
             >
               <Link
                 to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                className="text-gray-200 hover:text-emerald-300 transition-colors"
+                className="text-gray-400 hover:text-emerald-300 transition-colors"
               >
                 {item}
               </Link>
@@ -57,7 +57,7 @@ const Navbar = () => {
             className="relative group cursor-pointer"
             onClick={handleAdminClick}
           >
-            <span className="text-gray-200 hover:text-emerald-300 transition-colors">
+            <span className="text-red-400 hover:text-emerald-300 transition-colors">
               Admin
             </span>
             <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-emerald-300 rounded-full transition-all group-hover:w-full shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
@@ -112,7 +112,7 @@ const Navbar = () => {
 
           {/* Dark Mode Toggle Mobile */}
           <button
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="p-2 rounded-full bg-gray-800/40 hover:bg-gray-700/50 transition"
           >
             {darkMode ? (

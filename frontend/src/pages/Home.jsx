@@ -2,10 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import heroImg from "../assets/hero.jpg"; 
 
 const Home = () => {
-  const targetDate = new Date("2025-11-10T10:30:00").getTime();
+  const targetDate = new Date("2025-11-26T10:30:00").getTime();
   const [timeLeft, setTimeLeft] = useState("00:00:00:00");
 
   useEffect(() => {
@@ -40,6 +39,7 @@ const Home = () => {
   return (
     <div className="relative w-full overflow-hidden">
       {/* Hero Section with Video */}
+
       <div className="relative h-screen w-full">
         <video
           autoPlay
@@ -52,7 +52,8 @@ const Home = () => {
         </video>
         <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
 
-        <div className="relative z-20 flex flex-col items-center justify-center text-center h-full px-4">
+        <div className="relative z-20 flex flex-col items-center justify-center text-center h-full px-4  ">
+          
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,23 +135,47 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Showcase Image Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-        className="w-full py-20 bg-gray-950 flex justify-center"
-      >
-        <img
-          src={heroImg}
-          alt="Hackathon Showcase"
-          className="rounded-2xl shadow-2xl max-w-5xl w-full object-cover"
-        />
-      </motion.div>
+      {/* About Section */}
+      <section className="w-full flex flex-col items-center justify-center py-10">
+        {/* Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-3xl md:text-5xl font-extrabold drop-shadow-[0_0_15px_rgba(100,100,155,0.6)] text-center mb-6"
+        >
+          <motion.span
+            className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-blue-700 to-gray-200"
+            animate={{ backgroundPositionX: ["-200%", "200%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 6,
+              ease: "linear",
+            }}
+            style={{ backgroundSize: "200% 100%" }}
+          >
+            <Link to={"/about-datm"}>About</Link>
+          </motion.span>
+        </motion.h1>
+
+        {/* Showcase Image */}
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="w-full flex justify-center"
+        >
+          <img
+            src="/hero.jpg"
+            alt="Hackathon Showcase"
+            className="rounded-2xl shadow-2xl max-w-5xl w-full object-cover"
+          />
+        </motion.div>
+      </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-950 to-gray-900 text-gray-100">
+      <section className="py-20 from-gray-750 to-blue-900 text-gray-100">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <motion.h2
             initial={{ opacity: 0, y: -40 }}
@@ -159,7 +184,9 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-12"
           >
-            How <span className="text-emerald-400">HackStrom</span> Works
+            <span className="text-gray-400">How</span>{" "}
+            <span className="text-emerald-400">HackStrom</span>{" "}
+            <span className="text-gray-400">Works</span>
           </motion.h2>
 
           <div className="grid md:grid-cols-3 gap-10">
@@ -167,17 +194,23 @@ const Home = () => {
               {
                 step: "1",
                 title: "Register Your Team",
-                desc: "Sign up online with your team members (or solo) and secure your entry into the hackathon.",
+                desc: "Sign up online with your team members and secure your entry into the hackathon.",
               },
               {
                 step: "2",
                 title: "Show Your Skills",
-                desc: "Code, create, and perform in the hackathon to showcase your innovation, problem-solving, and teamwork.",
+                desc: "Code, create, and perform in the hackathon to showcase your innovation, problem-solving, and teamwork. Stand out from the crowd to get rewarded and win exciting cash prizes🏆!",
               },
               {
                 step: "3",
-                title: "Win Rewards & Prizes",
-                desc: "Compete for glory and take home exciting rewards, cash prizes, and recognition!",
+                title: "Hackathon Topic",
+                desc: (
+                  <>
+                    Focus on building a <b>student productivity application</b>{" "}
+                    to enhance learning and efficiency. As an extra bonus,
+                    implement an AI chatbot for smart assistance and innovation.
+                  </>
+                ),
               },
             ].map((item, i) => (
               <motion.div
@@ -192,12 +225,81 @@ const Home = () => {
                   {item.step}
                 </div>
                 <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-400">{item.desc}</p>
+                <p className="text-gray-300">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+      <div className="max-w-6xl mx-auto px-4 space-y-10">
+        {/* Map Section */}
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="w-full h-[250px] md:h-[350px] lg:h-[400px]"
+        >
+          <iframe
+            title="DATM Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5421.556988963394!2d89.53494910490006!3d26.488779681547285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e2576805709785%3A0x74670fd242930e87!2sDATM!5e1!3m2!1sen!2sin!4v1756402290469!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="rounded-lg border-0 shadow-xl w-full h-full"
+          ></iframe>
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col md:flex-row items-center justify-center gap-10"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          {/* College Logo */}
+          <div className="flex items-center gap-3 w-full md:w-1/2 justify-center md:justify-start">
+            <Link to={"/about-datm"}>
+              <motion.img
+                src="/datm.webp"
+                alt="DATM Logo"
+                whileHover={{ scale: 1.2, rotate: 0 }}
+                transition={{ duration: 0.3 }}
+                className="h-14 w-auto rounded-lg bg-white p-2 shadow-lg"
+              />
+            </Link>
+            <div className="text-left max-w-xs">
+              <h3 className="text-base md:text-lg font-semibold">
+                Dooars Academy of Technology & Management
+              </h3>
+              <p className="text-sm text-gray-400">Alipurduar, West Bengal</p>
+            </div>
+          </div>
+
+          {/* ISOAH Logo */}
+          <div className="flex items-center gap-3 w-full md:w-1/2 justify-center md:justify-end">
+            <Link to={"https://www.isoeh.com/"}>
+              {" "}
+              <motion.img
+                src="/isoah.webp"
+                alt="ISOAH Logo"
+                whileHover={{ scale: 1.2, rotate: 0 }}
+                transition={{ duration: 0.3 }}
+                className="h-14 w-auto rounded-lg bg-white p-2 shadow-lg"
+              />
+            </Link>
+            <div className="text-left max-w-xs">
+              <h3 className="text-base md:text-lg font-semibold">
+                ISOAH Data Security Pvt. Ltd.
+              </h3>
+              <p className="text-sm text-gray-400">Organizing Partner</p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };

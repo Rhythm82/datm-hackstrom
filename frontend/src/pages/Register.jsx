@@ -107,7 +107,7 @@ const Register = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-[#0a0f1c] to-black text-white p-6 overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center from-black via-[#0a0f1c] to-black text-white p-6 overflow-hidden">
       {/* Floating background particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(30)].map((_, i) => (

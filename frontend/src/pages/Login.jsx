@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-blue-900 to-black">
+    <div className="h-screen flex items-center justify-center  from-blue-900 to-black">
       <motion.form
         onSubmit={handleSubmit}
         className="p-8 bg-black/50 backdrop-blur-md rounded-2xl shadow-xl w-96"

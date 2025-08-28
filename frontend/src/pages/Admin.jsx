@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 const Admin = () => {
   const [participants, setParticipants] = useState([]);
   const navigate = useNavigate();
 
-  // ✅ Use axios instead of fetch
   useEffect(() => {
     const fetchParticipants = async () => {
       try {
@@ -22,6 +23,21 @@ const Admin = () => {
     fetchParticipants();
   }, []);
 
+  // 🔹 Export to Excel
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(participants);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Participants");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+    saveAs(data, "participants_list.xlsx");
+  };
+
+  // 🔹 Logout
   const handleLogout = async () => {
     try {
       await axios.post(
@@ -33,11 +49,7 @@ const Admin = () => {
           },
         }
       );
-
-      // Remove token from localStorage
       localStorage.removeItem("token");
-
-      // Redirect to login
       navigate("/login");
     } catch (err) {
       console.error("Logout failed", err);
@@ -46,16 +58,32 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white px-6 py-20 relative">
-      {/* 🔹 Logout Icon */}
-      <motion.button
-        onClick={handleLogout}
-        whileHover={{ scale: 1.2, rotate: 8 }}
-        whileTap={{ scale: 0.9 }}
-        className="absolute cursor-pointer top-23 right-10 text-red-400 hover:text-red-500 transition text-2xl"
-        title="Logout"
-      >
-        <i className="fa-solid fa-right-from-bracket"></i>
-      </motion.button>
+
+      {/* 🔹 Top Right Icons (Export + Logout) */}
+      <div className="absolute top-25 right-10 flex space-x-6 text-2xl ">
+
+        {/* Export Excel Icon */}
+        <motion.button
+          onClick={exportToExcel}
+          whileHover={{ scale: 1.3, rotate: 0 }}
+          whileTap={{ scale: 0.4 }}
+          className="text-green-400 hover:text-green-500 transition cursor-pointer"
+          title="Export to Excel"
+        >
+          <i className="fa-solid fa-file-excel"></i>
+        </motion.button>
+
+        {/* Logout Icon */}
+        <motion.button
+          onClick={handleLogout}
+          whileHover={{ scale: 1.3, rotate: 0 }}
+          whileTap={{ scale: 0.4 }}
+          className="text-red-400 hover:text-red-500 transition cursor-pointer"
+          title="Logout"
+        >
+          <i className="fa-solid fa-right-from-bracket"></i>
+        </motion.button>
+      </div>
 
       <motion.h1
         className="text-3xl font-bold mb-6 text-emerald-400"
@@ -70,11 +98,8 @@ const Admin = () => {
       <div className="grid grid-cols-3 gap-4 px-4 py-2 font-bold text-gray-300 border-b border-white/20 mb-2 lg:grid-cols-5">
         <span>Team Name</span>
         <span>Leader Name</span>
-
-        {/* Hide these on mobile */}
         <span className="hidden lg:block">Leader Email</span>
         <span className="hidden lg:block">Leader Phone</span>
-
         <span>Profile</span>
       </div>
 
@@ -88,19 +113,14 @@ const Admin = () => {
             transition={{ delay: i * 0.1, duration: 0.5 }}
             className="grid grid-cols-3 lg:grid-cols-5 gap-4 items-center p-4 rounded-2xl bg-white/10 border border-white/20 shadow-md hover:shadow-lg backdrop-blur-lg transition"
           >
-            {/* Always visible */}
             <span className="text-gray-200 font-semibold">{p.team_name}</span>
             <span className="text-emerald-300 font-semibold">{p.name}</span>
-
-            {/* Desktop only */}
             <span className="hidden lg:block text-gray-200 font-semibold">
               {p.team_leader_email}
             </span>
             <span className="hidden lg:block text-gray-200 font-semibold">
               {p.team_leader_phone}
             </span>
-
-            {/* Always visible */}
             <Link
               to={`/admin/participant/${p._id}`}
               className="text-emerald-400 text-xl font-bold hover:text-emerald-300 transition text-center"
