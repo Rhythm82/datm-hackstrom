@@ -90,7 +90,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/hackstrom/participants/register",
+        "https://datm-hackstrom-1.onrender.com/api/v1/hackstrom/participants/register",
         formData
       );
       setMessage("✅ Registration successful!");
