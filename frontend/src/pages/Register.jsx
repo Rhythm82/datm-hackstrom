@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { generatePdf } from "../components/generatePDF.jsx"
+import { generatePdf } from "../components/generatePDF"
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
